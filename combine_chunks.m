@@ -1,23 +1,28 @@
 clear all
 
+% Please set this variable to the path to the chunk-specific folders
+homepath = '/home/gyourga/source/predict_voxels/i3mT1_results';
+
+% if necessary, add the paths to NiiStat and spm12 here
 % addpath ('C:/Users/gyourga/Documents/code/NiiStat-master/');
 % addpath ('C:/Users/gyourga/Documents/code/spm12/');
-% homepath = 'C:\Users\gyourga\Documents\code\predict_voxels';
 
-addpath ('/home/gyourga/source/NiiStat-master/');
-addpath ('/home/gyourga/source/spm12/');
-homepath = '/home/gyourga/source/predict_voxels/gm_results';
+% addpath ('/home/gyourga/source/NiiStat-master/');
+% addpath ('/home/gyourga/source/spm12/');
 
-for i = 1:213
+cd ([homepath '/chunk1']);
+zdir = dir ('z*_map.nii');
+nz = length(zdir);
+for i = 1:nz
     map_names{i} = ['z' num2str(i) '_map.nii'];
 end
-map_names{214} = 'r_map.nii';
-map_names{215} = 'p_map.nii';
+map_names{nz+1} = 'r_map.nii';
+map_names{nz+2} = 'p_map.nii';
 
 for j = 1:length (map_names)
     cd (homepath);
     map_name = map_names{j}
-    combined_map = zeros ([121 145 121]);
+    combined_map = zeros ([105 127 91]);
     for i = 1:8
         cd (['chunk' num2str(i)]);
         hdr = spm_vol (map_name);
