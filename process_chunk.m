@@ -21,8 +21,8 @@ function process_chunk (chunk_idx, in_file, out_rootfolder, behav_filename)
 
 %addpath ('C:/Users/gyourga/Documents/code/NiiStat-master/');
 %addpath ('C:/Users/gyourga/Documents/code/spm12/');
-addpath ('/home/gyourga/source/NiiStat-master/');
-addpath ('/home/gyourga/source/spm12/');
+%addpath ('/home/gyourga/source/NiiStat-master/');
+%addpath ('/home/gyourga/source/spm12/');
 
 out_folder = [out_rootfolder '/chunk' num2str(chunk_idx)];
 load (in_file);

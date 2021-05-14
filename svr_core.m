@@ -207,18 +207,6 @@ if exist('good_idx','var') %insert NaN for unused features
     z_mapOK(good_idx) = z_map;
     z_map = z_mapOK;
 end
-%plot results
-% figure;
-% plot (labels, predicted_labels, 'o');
-% axis ([min(labels(:)) max(labels(:)) min(labels(:)) max(labels(:))]);
-% %set (gca, 'XTick', [0 1 2 3 4]);
-% xlabel ('Actual score');
-% ylabel ('Predicted score');
-% plot_title = beh_name;
-% plot_title (plot_title == '_') = '-';
-% title (sprintf ('%s', plot_title));
-%end nii_stat_svr_core()
-
 
 function x = normColSub(x)
 %normalize each column for range 0..1
@@ -246,19 +234,6 @@ x = bsxfun(@minus,x,min(x,[],2)); %translate so minimum = 0
 x = bsxfun(@rdivide,x,max(x,[],2)); %scale so range is 1
 %end normRowSub()
 
-% function x = columnUniqueThreshSub(x, minUnique)
-% %removes columns that have fewer than minUnique different values
-% n_col = size(x,2);
-% for c = n_col:-1:1
-%     if numel(unique(x(:,c))) < minUnique
-%         x(:,c) = [];
-%     end
-% end
-% if n_col ~= size(x,2)
-%     fprintf('%d columns of %d had at least %d unique values\n',size(x,2), n_col, minUnique);
-% end
-%end columnUniqueThreshSub()
-
 function [good_dat, good_idx] = columnUniqueThreshSub(dat, minUnique)
 n_col = size(dat,2);
 good_idx=[];
@@ -284,19 +259,3 @@ elseif (clipping == -1)
     ww (find (ww > 0)) = 0;
 end
 % end subGetModelWeights
-
-% function x = columnUniqueThreshSubOld(x, minUnique)
-% %removes columns that have fewer than minUnique different values
-% % x = [ 1 2 3 3 5 6; 2 2 2 2 3 3]'; ->minUnique(3) -> [1 2 3 3 5 6]'
-% n_col = size(x,2);
-% for c = size(x,2):-1:1    
-%     %how many items have the most frequent value
-%     s = sum(x(:,c) == mode(x(:,c)));
-%     if (size(x,1) - s) < minUnique
-%         x(:,c) = [];
-%     end
-% end
-% if n_col ~= size(x,2)
-%      fprintf('%d columns of %d had at least %d items in the smaller class\n',size(x,2), n_col, minUnique);
-% end
-% %end columnUniqueThreshSub()
