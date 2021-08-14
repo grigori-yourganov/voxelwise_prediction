@@ -1,3 +1,1 @@
-# voxelwise_prediction
-
-under construction [work work work]
+Please read the manual included with this repository.
