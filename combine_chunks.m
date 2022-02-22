@@ -19,10 +19,12 @@ end
 map_names{nz+1} = 'r_map.nii';
 map_names{nz+2} = 'p_map.nii';
 
+r_hdr = spm_vol ('r_map.nii');
+
 for j = 1:length (map_names)
     cd (homepath);
     map_name = map_names{j}
-    combined_map = zeros ([105 127 91]);
+    combined_map = zeros (r_hdr.dim);
     for i = 1:8
         cd (['chunk' num2str(i)]);
         hdr = spm_vol (map_name);
