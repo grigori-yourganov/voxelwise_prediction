@@ -26,6 +26,7 @@ function process_chunk (chunk_idx, in_file, out_rootfolder, behav_filename)
 
 out_folder = [out_rootfolder '/chunk' num2str(chunk_idx)];
 load (in_file);
+size (neurodata)
 dim_x = hdr.dim(1); dim_y = hdr.dim(2); dim_z = hdr.dim(3);
 halfdim_x = round(dim_x/2); halfdim_y = round(dim_y/2); halfdim_z = round(dim_z/2);
 
@@ -52,16 +53,28 @@ end
 [num, txt, raw] = xlsread (behav_filename, 'to_analyze');
 
 beh = nan(size(num, 2)-1, length(subj_name));
-
+bad_subj = [];
 for i = 1:length (subj_name)
     str = subj_name{i};
     subj_no = str2num (str (2:5));
     idx = find (num(:, 1) == subj_no);
-    beh(:, i) = num (idx, 2:size(num, 2));    
+    if ~isempty (idx)
+    	beh(:, i) = num (idx, 2:size(num, 2));
+    else
+    	bad_subj = [bad_subj i];
+    end
+end
+
+if ~isempty (bad_subj)
+  % exclude subjects for whom behavioural data are missing
+  beh (:, bad_subj) = [];
+  neurodata (:, :, :, bad_subj) = [];
 end
 
 invalid_idx = union (find (var (beh, 0, 2) == 0), find (isnan (var (beh, 0, 2))));
-beh (invalid_idx, :) = [];
+if ~isempty (invalid_idx)
+  beh (invalid_idx, :) = [];
+end
 
 ss = sum (neurodata, 4);
 good_idx = find (~isnan (ss));
