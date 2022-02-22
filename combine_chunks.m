@@ -25,7 +25,7 @@ for j = 1:length (map_names)
     cd (homepath);
     map_name = map_names{j}
     combined_map = zeros (r_hdr.dim);
-    for i = 1:8
+    for i = 1:nz
         cd (['chunk' num2str(i)]);
         hdr = spm_vol (map_name);
         chunk = spm_read_vols (hdr);
