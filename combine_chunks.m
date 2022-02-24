@@ -10,6 +10,8 @@ homepath = '/home/gyourga/source/predict_voxels/i3mT1_results';
 % addpath ('/home/gyourga/source/NiiStat-master/');
 % addpath ('/home/gyourga/source/spm12/');
 
+n_chunks = length (dir ('chunk*'));
+
 cd ([homepath '/chunk1']);
 zdir = dir ('z*_map.nii');
 nz = length(zdir);
@@ -25,7 +27,7 @@ for j = 1:length (map_names)
     cd (homepath);
     map_name = map_names{j}
     combined_map = zeros (r_hdr.dim);
-    for i = 1:nz
+    for i = 1:n_chunks
         cd (['chunk' num2str(i)]);
         hdr = spm_vol (map_name);
         chunk = spm_read_vols (hdr);
