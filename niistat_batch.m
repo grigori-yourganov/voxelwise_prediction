@@ -1,3 +1,5 @@
+% not really a voxelwise-prediction script. this is just a script that runs NiiStat on a cluster from a batch. 
+
 xlsname = 'C:\Users\gyourga\Documents\data\POLAR_FIRST_SESSION_ONLY_MAT_FILES\behavioral_lj.xlsx';
 roiIndices = 1;
 modalityIndices = 8;
