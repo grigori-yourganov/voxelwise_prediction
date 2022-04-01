@@ -6,4 +6,11 @@ modalityIndices = 8;
 numPermute = -1;
 pThresh = 0.05;
 minOverlap = 5;
+regressBehav = false;
+maskName = [];
+GrayMatterConnectivityOnly = true;
+deSkew = false;
+doTFCE = false;
+doSVM = true;
+NiiStat(xlsname, roiIndices, modalityIndices,numPermute, pThresh, minOverlap, regressBehav, maskName, GrayMatterConnectivityOnly, deSkew, doTFCE, doSVM)
 NiiStat(xlsname, roiIndices, modalityIndices,numPermute, pThresh, minOverlap);
