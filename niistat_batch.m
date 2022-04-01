@@ -12,5 +12,4 @@ GrayMatterConnectivityOnly = true;
 deSkew = false;
 doTFCE = false;
 doSVM = true;
-NiiStat(xlsname, roiIndices, modalityIndices,numPermute, pThresh, minOverlap, regressBehav, maskName, GrayMatterConnectivityOnly, deSkew, doTFCE, doSVM)
-NiiStat(xlsname, roiIndices, modalityIndices,numPermute, pThresh, minOverlap);
+NiiStat(xlsname, roiIndices, modalityIndices,numPermute, pThresh, minOverlap, regressBehav, maskName, GrayMatterConnectivityOnly, deSkew, doTFCE, doSVM);
